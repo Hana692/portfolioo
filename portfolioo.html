@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بورتفوليو إيهاب</title>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6A0DAD;
+            --secondary: #00C9B1;
+            --accent: #FF6B9D;
+            --light: #FFF9FB;
+            --dark: #2D1B69;
+            --text: #4A4453;
+            --gold: #FFD700;
+            --purple-light: #9D4EDD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #FFF9FB 0%, #F0E6FF 50%, #E6F7FF 100%);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الهيدر */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--purple-light) 50%, var(--accent) 100%);
+            color: white;
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill="rgba(255,255,255,0.1)" d="M0,800 Q250,700 500,800 T1000,800 L1000,1000 L0,1000 Z"/></svg>');
+            background-size: cover;
+            animation: wave 8s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'El Messiri', serif;
+            font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* الأقسام */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-family: 'El Messiri', serif;
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 80px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* المشاريع */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--purple-light));
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 70px rgba(106, 13, 173, 0.2);
+            border-color: var(--purple-light);
+        }
+
+        .project-card h3 {
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            font-weight: 700;
+            padding-right: 20px;
+            border-right: 5px solid var(--accent);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* الإنجازات */
+        .achievements-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 80px auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 35px;
+            margin: 30px 0;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.1);
+            border-right: 5px solid var(--secondary);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(-15px);
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.15);
+        }
+
+        /* المهارات */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple-light);
+            box-shadow: 0 25px 60px rgba(106, 13, 173, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-bar {
+            background: #F0E6FF;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 15px;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .skill-level {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            height: 100%;
+            border-radius: 15px;
+            transition: width 1.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+        }
+
+        /* القيادة */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .leadership-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            transition: all 0.5s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leadership-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+
+        .leadership-item:hover {
+            transform: translateY(-12px) scale(1.05);
+            border-color: var(--purple-light);
+            box-shadow: 0 30px 70px rgba(106, 13, 173, 0.2);
+        }
+
+        .leadership-item h3 {
+            color: var(--dark);
+            margin: 25px 0 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        /* التطوع */
+        .volunteering-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .volunteer-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            transition: all 0.4s ease;
+            border-left: 5px solid var(--gold);
+            position: relative;
+        }
+
+        .volunteer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(106, 13, 173, 0.15);
+        }
+
+        /* البرامج */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .program-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.1);
+            transition: transform 0.3s ease;
+            border-right: 4px solid var(--primary);
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* الأنشطة */
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+            border-bottom: 4px solid transparent;
+            position: relative;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--secondary);
+            box-shadow: 0 25px 60px rgba(106, 13, 173, 0.15);
+        }
+
+        /* قسم ملفات Drive */
+        .drive-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .drive-card {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--purple-light));
+        }
+
+        .drive-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(106, 13, 173, 0.2);
+            border-color: var(--purple-light);
+        }
+
+        .drive-icon {
+            font-size: 4em;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .drive-card h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .drive-card p {
+            color: var(--text);
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .drive-btn {
+            background: linear-gradient(135deg, var(--primary), var(--purple-light));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(106, 13, 173, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .drive-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(106, 13, 173, 0.4);
+        }
+
+        .drive-note {
+            background: #F8F5FF;
+            padding: 15px;
+            border-radius: 15px;
+            border-right: 4px solid var(--secondary);
+        }
+
+        .drive-note small {
+            color: var(--text);
+            font-size: 0.9em;
+        }
+
+        /* التجاوب */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2.2em;
+            }
+            
+            .drive-card {
+                padding: 40px 25px;
+                margin: 0 15px;
+            }
+            
+            .drive-card h3 {
+                font-size: 1.5em;
+            }
+            
+            .drive-btn {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+        }
+
+        /* الحركات */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>هنا إيهاب</h1>
+                <p>مطور ومبتكر شغوف بالتكنولوجيا والتعليم وتطوير الحلول المبتكرة</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- المشاريع -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">المشاريع</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3>Inside Out: نظام تأهيل لمرضى الفصام</h3>
+                    <p>نظام متكامل يجمع بين الألعاب العلاجية والذكاء الاصطناعي لمرضى الفصام</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>نموذج تنبؤي بالتحليل السلوكي والجيني</li>
+                        <li>بالتعاون مع مستشفى حلوان للصحة النفسية بموافقه من الامان العاملة للصحة النفسيه و علاج الادمان</li>
+                        <li>تطوير بنظام Arduino وبرمجة الألعاب</li>
+                    </ul>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3>Green Roots: الدفيئة الذكية</h3>
+                    <span class="badge">المركز الأول</span>
+                    <p>نظام ري ذكي يوفر 30% من استهلاك المياه</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>تطوير باستخدام Arduino وأجهزة الاستشعار</li>
+                        <li>مراقبة ذاتية لنمو النباتات</li>
+                        <li>الفائز بالمركز الأول في برنامج تمكين الفتيات في STEM</li>
+                    </ul>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3>Digestive Adventure Time</h3>
+                    <span class="badge">المركز الأول</span>
+                    <p>لعبة تعليمية تفاعلية لشرح الجهاز الهضمي للأطفال</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>عرض في منتدى نايل يونفرستي للبحوث</li>
+                        <li>وصول لأكثر من 50 طالب</li>
+                        <li>تصميم تفاعلي يجمع بين التعليم والترفيه</li>
+                    </ul>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3>Fish Green Life</h3>
+                    <p>نموذج ذكاء اصطناعي للتنبؤ باحتياجات حماية البحار</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>دمج بين التعلم الآلي والعلوم البيئية</li>
+                        <li>تحليل البيانات البحرية</li>
+                        <li>حلول مبتكرة للحفاظ على البيئة</li>
+                    </ul>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3>Her for Help</h3>
+                    <p>تطبيق تعليمي للعلوم</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>دعم أكثر من 500 طالب</li>
+                        <li>منصة دراسة تفاعلية</li>
+                        <li>موارد تعليمية شاملة</li>
+                    </ul>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3>Let Us Know</h3>
+                    <p>تطبيق التوعية بالتغيرات المناخية</p>
+                    <ul style="margin-top: 15px; padding-right: 20px;">
+                        <li>توعية بالتحديات المناخية</li>
+                        <li>حلول عملية للمشاكل البيئية</li>
+                        <li>مبادرات للتغيير الإيجابي</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الإنجازات -->
+    <section class="section" id="achievements" style="background: linear-gradient(135deg, #F8F5FF 0%, #F0FAFF 100%);">
+        <div class="container">
+            <h2 class="section-title">الإنجازات والجوائز</h2>
+            <div class="achievements-timeline">
+                <div class="timeline-item fade-in">
+                    <h3>المركز الأول - مسابقة Girls Make Scholarship</h3>
+                    <p>المحافظة - 2024 | أفضل مشروع في مجال التعليم</p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>المركز الأول - برنامج تمكين الفتيات في STEM</h3>
+                    <p>معهد جوته وشنايدر إلكتريك - 2024 | مشروع Green Roots</p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>المشاركة في المعرض الدولي للعلوم والهندسة ISEF 2025</h3>
+                    <p>عرض مشروع مبتكر في أكبر معرض علمي عالمي</p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>مسابقة الطلاب المتفوقين</h3>
+                    <p>مدرسة El future school - 2021</p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>NASA Space Apps Challenge</h3>
+                    <p>المسابقة الدولية لتكنولوجيا الفضاء - 2023</p>
+                </div>
+                <div class="timeline-item fade-in">
+                    <h3>Climate Science Olympiad</h3>
+                    <p>المسابقة الدولية للعلوم البيئية - 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المهارات -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">المهارات التقنية</h2>
+            <div class="skills-container">
+                <div class="skill-category fade-in">
+                    <h3>البرمجة والتطوير</h3>
+                    <div class="skill-item">
+                        <p>Arduino</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>Python</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>JavaScript</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>AI & Machine Learning</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>المهارات البحثية والمهنية</h3>
+                    <div class="skill-item">
+                        <p>البحث العلمي</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>إدارة المشاريع</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>العروض التقديمية</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>التواصل الفعال</p>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القيادة والمبادرات -->
+    <section class="section" id="leadership" style="background: linear-gradient(135deg, #F0FAFF 0%, #F5F0FF 100%);">
+        <div class="container">
+            <h2 class="section-title">الخبرات القيادية والمبادرات</h2>
+            <div class="leadership-grid">
+                <div class="leadership-item fade-in">
+                    <h3>قائدة النادي الألماني</h3>
+                    <p>معهد جوته - إدارة 50+ عضو</p>
+                </div>
+                <div class="leadership-item fade-in">
+                    <h3>سفيرة Technovation Girls</h3>
+                    <p>تمثيل مصر في المسابقة الدولية</p>
+                </div>
+                <div class="leadership-item fade-in">
+                    <h3>مؤسسة مبادرة Girl Up Phoenix Rise</h3>
+                    <p>تمكين 100+ فتاة من خلال ورش العمل</p>
+                </div>
+                <div class="leadership-item fade-in">
+                    <h3>سفيرة فريق Maqoor</h3>
+                    <p>التوعية بالتغيرات المناخية</p>
+                </div>
+                <div class="leadership-item fade-in">
+                    <h3>منسقة فعاليات التوعية الصحية</h3>
+                    <p>تنظيم حملات توعوية في المدارس</p>
+                </div>
+                <div class="leadership-item fade-in">
+                    <h3>قائدة فريق البحث العلمي</h3>
+                    <p>إدارة مشاريع بحثية متعددة التخصصات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التطوع -->
+    <section class="section" id="volunteering">
+        <div class="container">
+            <h2 class="section-title">العمل التطوعي</h2>
+            <div class="volunteering-grid">
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في مسابقة Technoxian للروبوتات</h3>
+                    <p>تنظيم المسابقة ودعم المشاركين - 2023</p>
+                </div>
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في برنامج EU Forsa</h3>
+                    <p>دعم المبادرات التعليمية والتوعوية </p>
+                </div>
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في Egypt Leadership Summit</h3>
+                    <p>المساهمة في تنظيم قمة القيادة الوطنية </p>
+                </div>
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في حملات توعية بالبيئة</h3>
+                    <p>المشاركة في مبادرات التعليم والتوعية البيئية</p>
+                </div>
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في فعاليات التوعية بالتقافة و التاريخ </h3>
+                    <p>تنظيم الفعاليات الثقافية والتربوية و التاريخية  لتوعية المصريين بتاريخهم و المحافظة عليه</p>
+                </div>
+                <div class="volunteer-card fade-in">
+                    <h3>متطوعة في نوادي طلابية</h3>
+                    <p>المساهمة في مساعدة و تطوير الطلاب</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- البرامج -->
+    <section class="section" id="programs" style="background: linear-gradient(135deg, #F8F5FF 0%, #F0FAFF 100%);">
+        <div class="container">
+            <h2 class="section-title">البرامج والمنح</h2>
+            <div class="programs-grid">
+                <div class="program-card fade-in">
+                    <h3>Knowledge Knights Seminar Series</h3>
+                    <p>منظمة من السفارة الأمريكية في القاهرة</p>
+                </div>
+                <div class="program-card fade-in">
+                    <h3>Arab Women Hackathon for Social Change</h3>
+                    <p>هاكاثون المرأة العربية للتغيير الاجتماعي</p>
+                </div>
+                <div class="program-card fade-in">
+                    <h3>AllGirls Code Bootcamp</h3>
+                    <p>معسكر البرمجة للفتيات</p>
+                </div>
+                <div class="program-card fade-in">
+                    <h3> Code for Green</h3>
+                    <p>برنامج البرمجة من أجل البيئة</p>
+                </div>
+                <div class="program-card fade-in">
+                    <h3>FXB Global</h3>
+                    <p>برنامج FXB العالمي</p>
+                </div>
+                <div class="program-card fade-in">
+                    <h3>برنامج القيادة في Harvard</h3>
+                    <p>برنامج القيادة والأكاديمي - 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأنشطة -->
+    <section class="section" id="activities">
+        <div class="container">
+            <h2 class="section-title">الأنشطة</h2>
+            <div class="activities">
+                <div class="activity-card fade-in">
+                    <h3>Microsoft Data Analysis Track</h3>
+                    <p>مايكروسوفت مصر - وزارة الاتصالات 2023</p>
+                </div>
+                <div class="activity-card fade-in">
+                    <h3>اللغة الألمانية A2</h3>
+                    <p>معهد جوته - 2024</p>
+                </div>
+                <div class="activity-card fade-in">
+                    <h3>SXSMUN2025</h3>
+                    <p>نموذج الأمم المتحدة - تمثيل اليابان</p>
+                </div>
+                <div class="activity-card fade-in">
+                    <h3>Make an Impact Fellowship</h3>
+                    <p>التأثير الاجتماعي وريادة الأعمال - 2024</p>
+                </div>
+                <div class="activity-card fade-in">
+                    <h3>مسابقة BowSea Ocean Awareness</h3>
+                    <p>مسابقة التوعية البحرية - 2023</p>
+                </div>
+                <div class="activity-card fade-in">
+                    <h3>مسابقة Femme Innovate Hackathon</h3>
+                    <p>هاكاثون الابتكار للفتيات - 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم ملفات Google Drive -->
+    <section class="section" id="drive-files" style="background: linear-gradient(135deg, #F8F5FF 0%, #F0FAFF 100%);">
+        <div class="container">
+            <h2 class="section-title">الملفات والإثباتات</h2>
+            <div class="drive-section fade-in">
+                <div class="drive-card">
+                    <div class="drive-icon">📁</div>
+                    <h3>مكتبة المستندات والشهادات</h3>
+                    <p>جميع الشهادات الرسمية، المشاريع البحثية، العروض التقديمية، والإثباتات الكاملة</p>
+                    <button class="drive-btn" onclick="openDriveFolder()">
+                        فتح المكتبة على Google Drive
+                    </button>
+                    <div class="drive-note">
+                        <small>يشمل: الشهادات الدولية - الأبحاث العلمية - عروض المسابقات - وثائق المشاريع</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // تأثير الظهور عند التمرير
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // تحريك أشرطة المهارات
+        const skillBars = document.querySelectorAll('.skill-level');
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 500);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // فتح مجلد Drive
+        function openDriveFolder() {
+            window.open('https://drive.google.com/drive/folders/1DG6386MILOMiNKMhkdGEOSzlR5-xqaMN?usp=sharing', '_blank');
+        }
+    </script>
+</body>
+</html>
